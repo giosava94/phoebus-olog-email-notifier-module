@@ -1,7 +1,12 @@
 package org.phoebus.olog.email;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,15 +24,13 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.MockitoAnnotations;
 import org.phoebus.olog.entity.Log;
-import org.phoebus.olog.entity.Tag;
 import org.phoebus.olog.entity.State;
+import org.phoebus.olog.entity.Tag;
+import org.simplejavamail.MailException;
 import org.simplejavamail.api.email.Email;
 import org.simplejavamail.api.mailer.Mailer;
 import org.simplejavamail.config.ConfigLoader;
 import org.simplejavamail.config.ConfigLoader.Property;
-import org.junit.Assert; 
-
-import org.simplejavamail.MailException;
 
 public class EmailNotifierTest {
 

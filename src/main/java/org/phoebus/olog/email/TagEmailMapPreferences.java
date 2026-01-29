@@ -1,6 +1,7 @@
 package org.phoebus.olog.email;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,7 +9,6 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /** Preference settings for tag to email list

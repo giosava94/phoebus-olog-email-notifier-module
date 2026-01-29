@@ -1,7 +1,21 @@
 package org.phoebus.olog.email;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 import org.phoebus.olog.entity.Attachment;
 import org.phoebus.olog.entity.Log;
+import org.phoebus.olog.entity.State;
+import org.phoebus.olog.entity.Tag;
 import org.phoebus.olog.notification.LogEntryNotifier;
 import org.simplejavamail.api.email.AttachmentResource;
 import org.simplejavamail.api.email.Email;
@@ -18,21 +32,6 @@ import com.google.auto.service.AutoService;
 
 import jakarta.activation.DataSource;
 import jakarta.mail.util.ByteArrayDataSource;
-
-import org.phoebus.olog.entity.Tag;
-import org.phoebus.olog.entity.State;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.HashMap;
 
 @AutoService(LogEntryNotifier.class)
 @Component
