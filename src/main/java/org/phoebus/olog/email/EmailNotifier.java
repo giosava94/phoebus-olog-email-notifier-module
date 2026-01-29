@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.HashMap;
 
 @AutoService(LogEntryNotifier.class)
 @Component
@@ -37,7 +38,7 @@ public class EmailNotifier implements LogEntryNotifier {
     @Autowired
     private Mailer mailer;
 
-    private Map<String,List<String>> tagEmailMap;
+    private Map<String,List<String>> tagEmailMap = new HashMap<>();
 
     @Override
     public void notify(Log log) {
@@ -75,7 +76,9 @@ public class EmailNotifier implements LogEntryNotifier {
                 if (tag.getState() == State.Active) {
                     String tagName = tag.getName();
                     tagNames.add(tagName);
-                    emailList.addAll(tagEmailMap.get(tagName));
+                    if (tagEmailMap.get(tagName) != null) {
+                        emailList.addAll(tagEmailMap.get(tagName));
+                    }
                 }
             }
             Email logbookEmail = createLogEmail(emailList, senderName, senderEmail, logTitle, log.getDescription(), tagNames);
