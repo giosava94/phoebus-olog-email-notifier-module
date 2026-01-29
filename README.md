@@ -1,6 +1,6 @@
 # Phoebus Olog Email Notifier Module
 
-This is an optional module for the Phoebus Olog electronic logbook service, see https://github.com/Olog/phoebus-olog. Its purpose is to send an email when a log is sent based on a list of emails mapped to the logbook entry's tag. 
+This is an optional module for the Phoebus Olog electronic logbook service, see https://github.com/Olog/phoebus-olog. Its purpose is to send an email when a log is sent based on a list of emails mapped to the logbook entry's tag.
 
 The module uses Simple Java Mail to send emails (Email java library: https://www.simplejavamail.org/).
 
@@ -9,7 +9,9 @@ The module uses Simple Java Mail to send emails (Email java library: https://www
 #### Add these to phoebus olog:
 
 pom.xml
-```
+
+```xml
+<!-- Email Notifier Module -->
 <dependency>
     <groupId>org.phoebus</groupId>
     <artifactId>olog-email-notifier-module</artifactId>
@@ -21,24 +23,32 @@ pom.xml
     <version>2.1.3</version>
 </dependency>
 <dependency>
-    <groupId>com.sun.mail</groupId>
-    <artifactId>jakarta.mail</artifactId>
-    <version>2.0.1</version>
+    <groupId>jakarta.mail</groupId>
+    <artifactId>jakarta.mail-api</artifactId>
+    <version>2.1.3</version>
+</dependency>
+<dependency>
+    <groupId>org.eclipse.angus</groupId>
+    <artifactId>angus-mail</artifactId>
+    <version>2.0.3</version>
 </dependency>
 ```
 
 Example tagsToEmails.json
-```
+
+```json
 {
-    "tagsToEmails": 
+    "tagsToEmails":
     {
       "tag1": ["email1@example.com"],
       "tag2": ["email2@example.com", "email3@example.com"]
     }
-}  
+}
 ```
+
 Add the following to olog application.properties
 Properties file:
+
 ```
 olog.tagsToEmailsFilePath=/pathToTagsToEmails.json
 
