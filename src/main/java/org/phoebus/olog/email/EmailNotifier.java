@@ -55,6 +55,7 @@ public class EmailNotifier implements LogEntryNotifier {
         List<String> tagNames = new ArrayList<>();
 
         String logTitle = log.getTitle();
+        String owner = log.getOwner();
         String senderEmail = ConfigLoader.getStringProperty(Property.DEFAULT_FROM_ADDRESS);
         String senderName = ConfigLoader.getStringProperty(Property.DEFAULT_FROM_NAME);
 
@@ -113,7 +114,8 @@ public class EmailNotifier implements LogEntryNotifier {
                     }
                 }
             }
-            Email logbookEmail = createLogEmail(emailList, senderName, senderEmail, logTitle, log.getDescription(),
+            Email logbookEmail = createLogEmail(emailList, senderName, senderEmail, owner, logTitle,
+                    log.getDescription(),
                     tagNames, attachmentResources);
             if (!emailList.isEmpty()) {
                 logger.log(Level.INFO, "Email being sent to: " + emailList);
@@ -126,12 +128,12 @@ public class EmailNotifier implements LogEntryNotifier {
         }
     }
 
-    public Email createLogEmail(List<String> emailList, String senderName, String senderEmail, String subject,
-            String body, List<String> tagNames, List<AttachmentResource> attachmentList) {
+    public Email createLogEmail(List<String> emailList, String senderName, String senderEmail, String owner,
+            String subject, String body, List<String> tagNames, List<AttachmentResource> attachmentList) {
         return EmailBuilder.startingBlank()
                 .from(senderName, senderEmail)
                 .toMultiple(emailList)
-                .withSubject(subject)
+                .withSubject("[" + owner + "] " + subject)
                 .withPlainText(tagNames.toString())
                 .withPlainText(body)
                 .withAttachments(attachmentList)

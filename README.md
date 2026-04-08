@@ -15,7 +15,7 @@ pom.xml
 <dependency>
     <groupId>org.phoebus</groupId>
     <artifactId>olog-email-notifier-module</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 <dependency>
     <groupId>jakarta.activation</groupId>
