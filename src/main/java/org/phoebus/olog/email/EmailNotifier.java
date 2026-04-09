@@ -131,9 +131,9 @@ public class EmailNotifier implements LogEntryNotifier {
     public Email createLogEmail(List<String> emailList, String senderName, String senderEmail, String owner,
             String subject, String body, List<String> tagNames, List<AttachmentResource> attachmentList) {
         return EmailBuilder.startingBlank()
-                .from(senderName, senderEmail)
+                .from(senderName + " [" + owner + "]", senderEmail)
                 .toMultiple(emailList)
-                .withSubject("[" + owner + "] " + subject)
+                .withSubject(subject)
                 .withPlainText(tagNames.toString())
                 .withPlainText(body)
                 .withAttachments(attachmentList)
