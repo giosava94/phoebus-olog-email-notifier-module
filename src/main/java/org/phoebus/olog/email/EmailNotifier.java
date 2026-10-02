@@ -25,6 +25,7 @@ import org.simplejavamail.config.ConfigLoader.Property;
 import org.simplejavamail.email.EmailBuilder;
 import org.simplejavamail.springsupport.SimpleJavaMailSpringSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +36,7 @@ import jakarta.mail.util.ByteArrayDataSource;
 
 @AutoService(LogEntryNotifier.class)
 @Component
+@ConditionalOnProperty(name = "simplejavamail.smtp.host")
 @Import(SimpleJavaMailSpringSupport.class)
 public class EmailNotifier implements LogEntryNotifier {
 
